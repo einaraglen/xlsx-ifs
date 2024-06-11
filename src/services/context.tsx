@@ -5,6 +5,7 @@ type AppContext = {
   parts: string[][] | null;
   selected: Record<string, string> | null;
   formatted: any[];
+  filters: Record<string, { filter: string; indexes: number[] }>;
   setStructure: React.Dispatch<React.SetStateAction<{ code: any[]; field: any[] }[] | null>>;
   setParts: React.Dispatch<React.SetStateAction<string[][] | null>>;
   setSelected: React.Dispatch<React.SetStateAction<Record<string, string> | null>>;
@@ -13,6 +14,7 @@ type AppContext = {
   status: (key: string) => boolean;
   addSelection: (header: string, key: string) => void;
   deleteSelection: (header: string) => void;
+  setFilter: (key: string, filter: string, indexes: number[]) => void;
 };
 
 const Context = createContext<AppContext>(null as any);
@@ -23,6 +25,7 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
   const [parts, setParts] = useState<string[][] | null>(null);
   const [selected, setSelected] = useState<Record<string, string> | null>(null);
   const [formatted, setFormatted] = useState<any>(null);
+  const [filters, setFilters] = useState<Record<string, { filter: string; indexes: number[] }>>({});
 
   const reset = () => {
     setStructure(null);
@@ -45,7 +48,7 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const addSelection = (header: string, key: string) => {
-    let tmp = selected ? { ...selected } : {}
+    let tmp = selected ? { ...selected } : {};
 
     tmp[header] = key;
 
@@ -53,7 +56,7 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const deleteSelection = (header: string) => {
-    let tmp = selected ? { ...selected } : null
+    let tmp = selected ? { ...selected } : null;
 
     if (tmp == null) {
       return;
@@ -62,10 +65,22 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
     delete tmp[header];
 
     if (Object.keys(tmp).length == 0) {
-      tmp = null
+      tmp = null;
     }
 
     setSelected(tmp);
+  };
+
+  const setFilter = (key: string, filter: string, indexes: number[]) => {
+    const tmp = { ...filters };
+
+    if (filter.trim().length == 0) {
+      delete tmp[key];
+    } else {
+      tmp[key] = { filter, indexes };
+    }
+
+    setFilters(tmp);
   };
 
   return (
@@ -75,6 +90,7 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
         parts,
         selected,
         formatted,
+        filters,
         setStructure,
         setParts,
         setSelected,
@@ -83,6 +99,7 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
         status,
         addSelection,
         deleteSelection,
+        setFilter,
       }}
     >
       {children}

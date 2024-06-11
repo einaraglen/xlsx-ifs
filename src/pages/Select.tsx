@@ -52,10 +52,10 @@ const Select = () => {
   return (
     <DndContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
       <div className="h-[12%] border-b border-white/10 flex items-center justify-between px-10">
-        <span className="font-semibold">Drag to Connect</span>
+        <span className="font-medium">Select Fields to Connect</span>
         <Button onClick={() => navigate("/export")} disabled={selected == null} className="flex items-center space-x-2 text-sm w-32">
           <span>Proceede</span>
-          <HiOutlineForward className="h-5 w-5" />
+          <HiOutlineForward className="h-5 min-w-5 w-5" />
         </Button>
       </div>
       <div className="w-full grid grid-cols-[1fr_2fr] h-[88%]">
