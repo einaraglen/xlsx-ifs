@@ -55,8 +55,8 @@ const Export = () => {
           </div>
       </button>
     ) : (
-      <div className={classNames(filter[rowIndex] && "bg-red-300/10", "flex items-center pl-2 border-b border-r border-white/10 relative")} style={style}>
-        <div className="w-[95%] truncate">
+      <div className={classNames(filter[rowIndex] && "bg-rose-400/10", "flex items-center pl-2 border-b border-r border-white/10 relative")} style={style}>
+        <div className={classNames(filter[rowIndex] && "opacity-50", "w-[95%] truncate")}>
           {data.rows[rowIndex][columnIndex] ? <span>{data.rows[rowIndex][columnIndex]}</span> : <span className="text-zinc-500 italic">Auto</span>}
         </div>
       </div>
