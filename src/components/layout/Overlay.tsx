@@ -24,9 +24,6 @@ const Overlay = (props: Props) => {
   const onFilter = () => {
     if (props.header != null) {
       const indexes = data.reduce<number[]>((res, curr, index) => {
-        if (index == 0) {
-          return res;
-        }
 
         if (!(curr || "").toString().startsWith(query)) {
           res.push(index)
@@ -63,7 +60,7 @@ const Overlay = (props: Props) => {
     }
 
     if (filters[props.header.header] != null) {
-      setQuery(filters[props.header.header].filter)
+      setQuery(filters[props.header.header].filter || "")
     }
 
     const matches: string[] = [];

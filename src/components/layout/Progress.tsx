@@ -37,7 +37,7 @@ const Progress = () => {
   const { status } = useAppContext()
 
   return (
-    <nav className="bg-zinc-900 h-20 shadow-lg fixed inset-x-0 z-50">
+    <nav className="bg-zinc-900 h-20 shadow-lg fixed inset-x-0 z-50 border-b border-white/10">
       <div style={{ width: progress_bar[progression[pathname]] }} className="absolute z-0 h-3 w-[47.3rem] bg-violet-800 top-[1.75rem] left-32 transition-all duration-500 rounded-full" />
       <div className="grid grid-cols-4 pt-5">
         {steps.map((step, i) => (

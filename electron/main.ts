@@ -68,6 +68,10 @@ ipcMain.handle('export-data', (...args: HandleEvent) => {
   return exportData(args[1])
 })
 
+ipcMain.handle('prepare-clipboard', (...args: HandleEvent) => {
+  return exportData(args[1])
+})
+
 ipcMain.handle('show-dialog', (...args: HandleEvent) => {
   return dialog.showMessageBox(win!, args[1]);
 })

@@ -1,13 +1,15 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
+import { IFS_Structure } from "../../electron/lib/parser";
 
 type AppContext = {
-  structure: { code: any[]; field: any[] }[] | null;
-  parts: string[][] | null;
+  structure: IFS_Structure[] | null;
+  parts: (string | number | null)[][] | null;
   selected: Record<string, string> | null;
   formatted: any[];
   filters: Record<string, { filter: string; indexes: number[] }>;
-  setStructure: React.Dispatch<React.SetStateAction<{ code: any[]; field: any[] }[] | null>>;
-  setParts: React.Dispatch<React.SetStateAction<string[][] | null>>;
+  metadata: string[] | null
+  setStructure: React.Dispatch<React.SetStateAction<IFS_Structure[] | null>>;
+  setParts: React.Dispatch<React.SetStateAction<(string | number | null)[][] | null>>;
   setSelected: React.Dispatch<React.SetStateAction<Record<string, string> | null>>;
   setFormatted: React.Dispatch<React.SetStateAction<any[]>>;
   reset: () => void;
@@ -15,17 +17,19 @@ type AppContext = {
   addSelection: (header: string, key: string) => void;
   deleteSelection: (header: string) => void;
   setFilter: (key: string, filter: string, indexes: number[]) => void;
+  setMetadata: React.Dispatch<React.SetStateAction<any[] | null>>
 };
 
 const Context = createContext<AppContext>(null as any);
 const useAppContext = () => useContext(Context);
 
 const AppProvider = ({ children }: { children: ReactNode }) => {
-  const [structure, setStructure] = useState<{ code: any[]; field: any[] }[] | null>(null);
-  const [parts, setParts] = useState<string[][] | null>(null);
+  const [structure, setStructure] = useState<IFS_Structure[] | null>(null);
+  const [parts, setParts] = useState<(string | number | null)[][] | null>(null);
   const [selected, setSelected] = useState<Record<string, string> | null>(null);
   const [formatted, setFormatted] = useState<any>(null);
   const [filters, setFilters] = useState<Record<string, { filter: string; indexes: number[] }>>({});
+  const [metadata, setMetadata] = useState<string[] | null>(null);
 
   const reset = () => {
     setStructure(null);
@@ -91,6 +95,7 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
         selected,
         formatted,
         filters,
+        metadata,
         setStructure,
         setParts,
         setSelected,
@@ -100,6 +105,7 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
         addSelection,
         deleteSelection,
         setFilter,
+        setMetadata
       }}
     >
       {children}

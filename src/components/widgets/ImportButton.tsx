@@ -6,14 +6,16 @@ import { HiOutlineClipboardDocumentList  } from "react-icons/hi2";
 
 const ImportButton = () => {
   let navigate = useNavigate();
-  const { setStructure } = useAppContext();
+  const { setStructure, setMetadata } = useAppContext();
   const { readClipboard, showDialog } = useInvoke();
 
   const onImport = async () => {
     try {
       const clipboard = await navigator.clipboard.readText();
-      const res = await readClipboard(clipboard);
-      setStructure(res);
+      const { metadata, structure } = await readClipboard(clipboard);
+
+      setStructure(structure);
+      setMetadata(metadata)
       navigate("/import");
     } catch (err: any) {
       return await showDialog({
