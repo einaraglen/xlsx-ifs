@@ -1,91 +1,44 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
-import { IFS_Structure } from "../../electron/lib/parser";
+import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
+import { Structure, Row, Metadata, Selected, Filters, Export, Header, Filter } from "../../electron/lib/methods";
+import { getFilter } from "./tools";
 
 type AppContext = {
-  structure: IFS_Structure[] | null;
-  parts: (string | number | null)[][] | null;
-  selected: Record<string, string> | null;
-  formatted: any[];
-  filters: Record<string, { filter: string; indexes: number[] }>;
-  metadata: string[] | null
-  setStructure: React.Dispatch<React.SetStateAction<IFS_Structure[] | null>>;
-  setParts: React.Dispatch<React.SetStateAction<(string | number | null)[][] | null>>;
-  setSelected: React.Dispatch<React.SetStateAction<Record<string, string> | null>>;
-  setFormatted: React.Dispatch<React.SetStateAction<any[]>>;
-  reset: () => void;
-  status: (key: string) => boolean;
-  addSelection: (header: string, key: string) => void;
-  deleteSelection: (header: string) => void;
-  setFilter: (key: string, filter: string, indexes: number[]) => void;
-  setMetadata: React.Dispatch<React.SetStateAction<any[] | null>>
+  structure: Structure[] | null;
+  parts: Row[] | null;
+  selected: Selected | null;
+  filters: Filters | null;
+  metadata: Metadata | null;
+  data: Export | null;
+  header: Header | null;
+  overlay: boolean;
+  filter: Filter,
+  groupBy: string | null
+  setStructure: React.Dispatch<React.SetStateAction<Structure[] | null>>;
+  setParts: React.Dispatch<React.SetStateAction<Row[] | null>>;
+  setSelected: React.Dispatch<React.SetStateAction<Selected | null>>;
+  setMetadata: React.Dispatch<React.SetStateAction<Metadata | null>>;
+  setFilters: React.Dispatch<React.SetStateAction<Filters | null>>;
+  setData: React.Dispatch<React.SetStateAction<Export | null>>;
+  setHeader: React.Dispatch<React.SetStateAction<Header | null>>;
+  setOverlay: React.Dispatch<React.SetStateAction<boolean>>;
+  setGroupBy: React.Dispatch<React.SetStateAction<string | null>>
 };
 
 const Context = createContext<AppContext>(null as any);
 const useAppContext = () => useContext(Context);
 
 const AppProvider = ({ children }: { children: ReactNode }) => {
-  const [structure, setStructure] = useState<IFS_Structure[] | null>(null);
-  const [parts, setParts] = useState<(string | number | null)[][] | null>(null);
-  const [selected, setSelected] = useState<Record<string, string> | null>(null);
-  const [formatted, setFormatted] = useState<any>(null);
-  const [filters, setFilters] = useState<Record<string, { filter: string; indexes: number[] }>>({});
-  const [metadata, setMetadata] = useState<string[] | null>(null);
+  const [structure, setStructure] = useState<Structure[] | null>(null);
+  const [parts, setParts] = useState<Row[] | null>(null);
+  const [selected, setSelected] = useState<Selected | null>(null);
+  const [filters, setFilters] = useState<Filters | null>(null);
+  const [metadata, setMetadata] = useState<Metadata | null>(null);
+  const [data, setData] = useState<Export | null>(null);
+  const [header, setHeader] = useState<Header | null>(null);
+  const [overlay, setOverlay] = useState<boolean>(false);
+  const [groupBy, setGroupBy] = useState<string | null>(null)
 
-  const reset = () => {
-    setStructure(null);
-    setParts(null);
-    setSelected(null);
-    setFormatted(null);
-  };
-
-  const status = (key: string) => {
-    switch (key) {
-      case "/":
-        return structure != null;
-      case "/import":
-        return parts != null;
-      case "/select":
-        return selected != null;
-      default:
-        return false;
-    }
-  };
-
-  const addSelection = (header: string, key: string) => {
-    let tmp = selected ? { ...selected } : {};
-
-    tmp[header] = key;
-
-    setSelected(tmp);
-  };
-
-  const deleteSelection = (header: string) => {
-    let tmp = selected ? { ...selected } : null;
-
-    if (tmp == null) {
-      return;
-    }
-
-    delete tmp[header];
-
-    if (Object.keys(tmp).length == 0) {
-      tmp = null;
-    }
-
-    setSelected(tmp);
-  };
-
-  const setFilter = (key: string, filter: string, indexes: number[]) => {
-    const tmp = { ...filters };
-
-    if (filter.trim().length == 0) {
-      delete tmp[key];
-    } else {
-      tmp[key] = { filter, indexes };
-    }
-
-    setFilters(tmp);
-  };
+  const filter = useMemo(() => getFilter(data, filters), [data, filters])
 
   return (
     <Context.Provider
@@ -93,19 +46,22 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
         structure,
         parts,
         selected,
-        formatted,
         filters,
         metadata,
+        data,
+        header,
+        overlay,
+        filter,
+        groupBy,
         setStructure,
         setParts,
         setSelected,
-        setFormatted,
-        reset,
-        status,
-        addSelection,
-        deleteSelection,
-        setFilter,
-        setMetadata
+        setMetadata,
+        setFilters,
+        setData,
+        setHeader,
+        setOverlay,
+        setGroupBy
       }}
     >
       {children}

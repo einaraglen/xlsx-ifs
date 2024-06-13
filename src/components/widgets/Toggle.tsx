@@ -9,7 +9,7 @@ type Props = {
 
 const Toggle = ({ value, setValue, disabled = false }: Props) => {
 return (
-    <div className="h-8 w-16 cursor-not-allowed rounded-2xl ring-1 ring-white/15 ring-inset shadow-lg">
+    <div className="h-8 w-16 rounded-2xl ring-1 ring-white/15 ring-inset shadow-lg">
    <Switch
       checked={value}
       onChange={(value: boolean) => setValue(value)}
@@ -32,7 +32,7 @@ return (
           )}
           aria-hidden="true"
         >
-          <svg className="h-4 w-4 text-rose-400" fill="none" viewBox="0 0 12 12">
+          <svg className="h-4 w-4 text-zinc-400" fill="none" viewBox="0 0 12 12">
             <path d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </span>

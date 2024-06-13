@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { classNames } from "../../services/tools";
 import { HiOutlineCheckCircle } from "react-icons/hi2";
-import { useAppContext } from "../../services/context";
+import useAppHandler from "../../services/handler";
 
 const steps = [
   {
@@ -34,14 +34,14 @@ const progress_bar = ["0rem", "15.7rem", "31.5rem", "47.3rem"]
 const Progress = () => {
   let navigate = useNavigate();
   let { pathname } = useLocation();
-  const { status } = useAppContext()
+  const { status } = useAppHandler()
 
   return (
-    <nav className="bg-zinc-900 h-20 shadow-lg fixed inset-x-0 z-50 border-b border-white/10">
+    <nav className="bg-zinc-900 h-20 shadow-lg fixed inset-x-0 z-50 border-b border-white/15">
       <div style={{ width: progress_bar[progression[pathname]] }} className="absolute z-0 h-3 w-[47.3rem] bg-violet-800 top-[1.75rem] left-32 transition-all duration-500 rounded-full" />
       <div className="grid grid-cols-4 pt-5">
         {steps.map((step, i) => (
-          <button onClick={() => navigate(step.key)} key={step.key} className="flex flex-col items-center space-y-0 relative group focus:outline-none">
+          <button disabled={i != 0 && !status(steps[i - 1].key)} onClick={() => navigate(step.key)} key={step.key} className="flex flex-col items-center space-y-0 relative group focus:outline-none disabled:cursor-not-allowed">
             <div
               className={classNames(
                 progression[pathname] == i ? "bg-violet-600" : "bg-zinc-800",

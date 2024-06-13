@@ -5,6 +5,7 @@ import { useAppContext } from "../../services/context";
 import Button from "./Button";
 import { HiOutlineInboxArrowDown  } from "react-icons/hi2";
 import { classNames } from "../../services/tools";
+import useAppHandler from "../../services/handler";
 
 const getFilePath = (e: React.DragEvent<HTMLDivElement>) => {
   if (e.dataTransfer.items) {
@@ -28,6 +29,7 @@ const getFilePath = (e: React.DragEvent<HTMLDivElement>) => {
 
 const FileDrop = () => {
   const { setParts } = useAppContext();
+  const { onFileImport } = useAppHandler();
   let navigate = useNavigate();
   const { readFile, showDialog } = useInvoke();
   const [isDrag, setIsDrag] = useState(false);
@@ -54,6 +56,9 @@ const FileDrop = () => {
       const path = getFilePath(e);
       const res = await readFile(path);
       setParts(res);
+
+      onFileImport()
+
       navigate("/select");
     } catch (err: any) {
       setIsDrag(false);
@@ -76,6 +81,9 @@ const FileDrop = () => {
 
       const res = await readFile(file?.path!);
       setParts(res);
+      
+      onFileImport()
+
       navigate("/select");
     } catch (err: any) {
       return await showDialog({

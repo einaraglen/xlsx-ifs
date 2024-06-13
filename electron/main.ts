@@ -1,7 +1,7 @@
 import { app, BrowserWindow, ipcMain, dialog } from 'electron'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
-import { exportData, readClipboard, readFile } from './lib/parser'
+import { exportData, prepareClipboard, readClipboard, readFile } from './lib/methods'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -69,7 +69,7 @@ ipcMain.handle('export-data', (...args: HandleEvent) => {
 })
 
 ipcMain.handle('prepare-clipboard', (...args: HandleEvent) => {
-  return exportData(args[1])
+  return prepareClipboard(args[1])
 })
 
 ipcMain.handle('show-dialog', (...args: HandleEvent) => {

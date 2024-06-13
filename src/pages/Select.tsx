@@ -8,9 +8,11 @@ import { HiOutlineForward } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import { FadeDelay, FadeDrop } from "../components/layout/Animations";
 import InnerScroll from "../components/layout/InnerScroll";
+import useAppHandler from "../services/handler";
 
 const Select = () => {
-  const { structure, parts, addSelection, selected } = useAppContext();
+  const { structure, parts, selected } = useAppContext();
+  const { addSelection } = useAppHandler()
   const [active, setActive] = useState<any>(null);
   let navigate = useNavigate();
 
@@ -29,7 +31,7 @@ const Select = () => {
     <DndContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
       <FadeDrop className="h-[12%] border-b border-white/10 flex items-center justify-between px-10">
         <span className="font-medium">Select Fields to Connect</span>
-        <Button onClick={() => navigate("/export")} disabled={selected == null} className="flex items-center space-x-2 text-sm w-32">
+        <Button onClick={() => navigate("/export")} disabled={!selected} className="flex items-center space-x-2 text-sm w-32">
           <span>Proceede</span>
           <HiOutlineForward className="h-5 min-w-5 w-5" />
         </Button>
@@ -43,8 +45,8 @@ const Select = () => {
           </div>
         </InnerScroll>
         <InnerScroll>
-          <div className="flex justify-center">
-            <div className="grid grid-cols-[13rem_1.3rem_12rem_1.3rem_5rem] gap-y-4 gap-x-4 py-3">
+          <div className="flex justify-end pr-3">
+            <div className="grid grid-cols-[13rem_1.3rem_13rem_1.3rem_5rem] gap-y-4 gap-x-4 py-3">
               {structure && structure.map((item: any) => <KeyItem key={item.header} data={item.header} />)}
             </div>
           </div>

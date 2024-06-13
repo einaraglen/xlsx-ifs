@@ -1,9 +1,9 @@
 // @see - https://www.electron.build/configuration/configuration
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  "appId": "YourAppID",
+  "appId": "com.seaonics.excel.tool",
   "asar": true,
-  "productName": "YourAppName",
+  "productName": "IFS Excel Tool",
   "directories": {
     "output": "release/${version}"
   },
@@ -26,6 +26,7 @@
         ]
       }
     ],
+    "icon": "dist/plug.ico",
     "artifactName": "${productName}-Windows-${version}-Setup.${ext}"
   },
   "nsis": {

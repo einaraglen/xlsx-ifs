@@ -1,18 +1,41 @@
+import { Export, Filters } from "../../electron/lib/methods";
+
 export const classNames = (...classes: any): string => {
   return classes.filter(Boolean).join(" ");
 };
 
-export const getFilter = (filters: Record<string, { filter: string; indexes: number[] }>) => {
-  let values: number[] = [];
-
-  for (const item of Object.entries(filters)) {
-    values = [...values, ...item[1].indexes];
+export const getFilter = (data: Export | null, filters: Filters | null) => {
+  if (!data || !filters) {
+    return {};
   }
 
-  const unique = new Set(values);
+  const check: Record<string, number> = {};
 
-  return [...unique].reduce<any>((res: any, curr: number) => {
-    res[curr] = true;
-    return res;
-  }, {});
+  for (const [ifs_header, query] of Object.entries(filters)) {
+    check[query] = data.keys.indexOf(ifs_header);
+  }
+
+  const filter: Record<number, boolean> = {};
+
+  for (let i = 0; i < data.rows.length; i++) {
+    for (const [query, index] of Object.entries(check)) {
+      if (!data.rows[i][index]?.toString().startsWith(query)) {
+        filter[i] = true;
+      }
+    }
+  }
+
+  return filter;
+};
+
+export const isArray = (val: any) => {
+  return val != null && Array.isArray(val);
+};
+
+export const isObject = (val: any) => {
+  return val != null && typeof val == "object" && !Array.isArray(val);
+};
+
+export const isString = (val: any) => {
+  return val != null && typeof val === "string";
 };
