@@ -62,10 +62,36 @@ const useAppHandler = () => {
     context.setFilters(tmp);
   };
 
+  const setMultiplier = (key: string, multiplier: number | null) => {
+    const tmp = { ...context.multipliers };
+
+    if (multiplier == null) {
+      delete tmp[key];
+    } else {
+      tmp[key] = multiplier;
+    }
+
+    context.setMultipliers(tmp);
+  }
+
+  const setInsert = (key: string, insert: string) => {
+    const tmp = { ...context.inserts };
+
+    if (insert.trim().length == 0) {
+      delete tmp[key];
+    } else {
+      tmp[key] = insert;
+    }
+
+    context.setInserts(tmp);
+  }
+
+
   const setGroupBy = (str: string) => {
     context.setGroupBy((g) => str == g ? null : str)
   }
 
+  
   const onStructureImport = () => {
     context.setGroupBy(null)
     context.setData(null)
@@ -81,7 +107,7 @@ const useAppHandler = () => {
     context.setSelected(null)
   }
 
-  return { reset, status, addSelection, deleteSelection, setFilter, setGroupBy, onStructureImport, onFileImport }
+  return { reset, status, addSelection, deleteSelection, setFilter, setMultiplier, setInsert, setGroupBy, onStructureImport, onFileImport }
 };
 
 export default useAppHandler;

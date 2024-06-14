@@ -44,14 +44,14 @@ const Export = () => {
     <Fragment>
       <FadeDrop className="h-[12%] border-b border-white/10 flex items-center justify-between relative px-10">
         <span className="font-medium">Export Preview</span>
-        <Button onClick={onCopy} disabled={!data} className="flex items-center space-x-2 text-sm w-32">
+        <Button onClick={onCopy} disabled={!data} className="flex items-center space-x-2 text-sm w-32 py-2 px-5">
           <span>Copy</span>
           <HiOutlineClipboardDocumentList className="h-5 w-5" />
         </Button>
       </FadeDrop>
       <FadeDelay>
         {data && data.keys && data.rows && (
-          <Grid className="corner text-xs" overscanColumnCount={5} overscanRowCount={10} columnCount={data.keys.length} columnWidth={120} height={425} rowCount={data.rows.length + 1} rowHeight={35} width={1010}>
+          <Grid className="corner text-xs" overscanColumnCount={4} overscanRowCount={4} columnCount={data.keys.length} columnWidth={120} height={425} rowCount={data.rows.length + 1} rowHeight={35} width={1010}>
             {Cell}
           </Grid>
         )}

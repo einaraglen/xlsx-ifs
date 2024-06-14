@@ -32,7 +32,7 @@ const ImportButton = () => {
     }
   };
   return (
-    <Button onClick={onImport} className="flex items-center space-x-2 w-52">
+    <Button onClick={onImport} className="flex items-center space-x-2 w-52 py-2 px-5">
       <span>Import Structure</span>
       <HiOutlineClipboardDocumentList  className="h-5 w-5" />
     </Button>

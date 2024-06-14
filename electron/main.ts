@@ -21,13 +21,11 @@ function createWindow() {
     height: 600,
     resizable: false,
     autoHideMenuBar: true,
-    icon: path.join(process.env.VITE_PUBLIC, 'plug.svg'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
     },
   })
 
-  win.setMenu(null)
 
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', (new Date).toLocaleString())
@@ -37,6 +35,7 @@ function createWindow() {
     win.loadURL(VITE_DEV_SERVER_URL)
     win.webContents.openDevTools()
   } else {
+    win.setMenu(null)
     win.loadFile(path.join(RENDERER_DIST, 'index.html'))
   }
 }

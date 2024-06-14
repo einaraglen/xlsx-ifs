@@ -107,7 +107,7 @@ const FileDrop = () => {
         onDragLeave={handleDragLeave}
         onDrop={onFileDrop}
       />
-      <Button onClick={onImportClick} className="flex items-center space-x-2 z-10 w-52">
+      <Button onClick={onImportClick} className="flex items-center space-x-2 z-10 w-52 py-2 px-5">
         <span>Import File</span>
         <HiOutlineInboxArrowDown  className="h-5 w-5" />
       </Button>

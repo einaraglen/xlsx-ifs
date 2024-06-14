@@ -10,7 +10,7 @@ interface Props {
 
 const Button = (props: Props) => {
     return (
-        <button disabled={props.disabled} onClick={props.onClick} className={classNames(props.className, "disabled:cursor-not-allowed disabled:opacity-50 inline-flex shadow-lg justify-center overflow-hidden font-medium transition rounded-lg py-2 px-5 bg-violet-700 active:bg-violet-900 text-zinc-200 ring-0 ring-inset ring-transparent hover:bg-violet-600")}>
+        <button disabled={props.disabled} onClick={props.onClick} className={classNames(props.className || "py-2 px-5", "disabled:cursor-not-allowed disabled:opacity-50 inline-flex shadow-lg justify-center overflow-hidden font-medium transition rounded-lg bg-violet-700 active:bg-violet-900 text-zinc-200 ring-0 ring-inset ring-transparent hover:bg-violet-600")}>
             {props.children}
         </button>
     )

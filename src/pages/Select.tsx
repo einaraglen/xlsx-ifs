@@ -31,7 +31,7 @@ const Select = () => {
     <DndContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
       <FadeDrop className="h-[12%] border-b border-white/10 flex items-center justify-between px-10">
         <span className="font-medium">Select Fields to Connect</span>
-        <Button onClick={() => navigate("/export")} disabled={!selected} className="flex items-center space-x-2 text-sm w-32">
+        <Button onClick={() => navigate("/export")} disabled={!selected} className="flex items-center space-x-2 text-sm w-32 py-2 px-5">
           <span>Proceede</span>
           <HiOutlineForward className="h-5 min-w-5 w-5" />
         </Button>
