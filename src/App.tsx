@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import Progress from "./components/layout/Progress";
-import { AppProvider } from "./services/context";
+import Progress from "@layout/Progress";
+import { AppProvider } from "@services/context";
 import { ErrorBoundary } from "react-error-boundary";
-import ErrorFallback from "./components/layout/ErrorFallback";
+import ErrorFallback from "@layout/ErrorFallback";
 
 const App = () => {
   return (
