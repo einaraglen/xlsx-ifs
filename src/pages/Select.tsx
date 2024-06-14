@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { useAppContext } from "../services/context";
+import { useAppContext } from "@services/context";
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent } from "@dnd-kit/core";
-import HeaderItem from "../components/widgets/HeaderItem";
-import KeyItem from "../components/widgets/KeyItem";
-import Button from "../components/widgets/Button";
+import HeaderItem from "@widgets/HeaderItem";
+import KeyItem from "@widgets/KeyItem";
+import Button from "@widgets/Button";
 import { HiOutlineForward } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
-import { FadeDelay, FadeDrop } from "../components/layout/Animations";
-import InnerScroll from "../components/layout/InnerScroll";
-import useAppHandler from "../services/handler";
+import { FadeDelay, FadeDrop } from "@layout/Animations";
+import InnerScroll from "@layout/InnerScroll";
+import useAppHandler from "@services/handler";
 
 const Select = () => {
   const { structure, parts, selected } = useAppContext();

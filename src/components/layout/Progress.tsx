@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { classNames } from "../../services/tools";
+import { classNames } from "@services/tools";
 import { HiOutlineCheckCircle } from "react-icons/hi2";
-import useAppHandler from "../../services/handler";
+import useAppHandler from "@services/handler";
 
 const steps = [
   {

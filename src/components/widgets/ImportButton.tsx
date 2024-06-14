@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import useInvoke from "../../services/invoke";
-import { useAppContext } from "../../services/context";
+import useInvoke from "@services/invoke";
+import { useAppContext } from "@services/context";
 import Button from "./Button";
 import { HiOutlineClipboardDocumentList  } from "react-icons/hi2";
-import useAppHandler from "../../services/handler";
+import useAppHandler from "@services/handler";
 
 const ImportButton = () => {
   let navigate = useNavigate();

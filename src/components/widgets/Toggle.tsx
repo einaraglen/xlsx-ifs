@@ -1,5 +1,5 @@
 import { Switch } from "@headlessui/react";
-import { classNames } from "../../services/tools";
+import { classNames } from "@services/tools";
 
 type Props = {
     value: boolean

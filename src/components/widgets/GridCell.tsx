@@ -1,5 +1,5 @@
-import { useAppContext } from "../../services/context";
-import { classNames } from "../../services/tools";
+import { useAppContext } from "@services/context";
+import { classNames } from "@services/tools";
 import { Fragment } from "react/jsx-runtime";
 
 const Dot = ({ className }: { className?: string }) => {

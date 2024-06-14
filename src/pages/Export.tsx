@@ -1,12 +1,12 @@
 import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
-import Button from "../components/widgets/Button";
+import Button from "@widgets/Button";
 import { useEffect, memo, Fragment } from "react";
-import { useAppContext } from "../services/context";
-import useInvoke from "../services/invoke";
+import { useAppContext } from "@services/context";
+import useInvoke from "@services/invoke";
 import { FixedSizeGrid as Grid } from "react-window";
-import Overlay from "../components/layout/Overlay";
-import GridCell from "../components/widgets/GridCell";
-import { FadeDelay, FadeDrop } from "../components/layout/Animations";
+import Overlay from "@layout/Overlay";
+import GridCell from "@widgets/GridCell";
+import { FadeDelay, FadeDrop } from "@layout/Animations";
 
 const Export = () => {
   const { structure, parts, selected, metadata, filter, data, groupBy, setOverlay, setData } = useAppContext();

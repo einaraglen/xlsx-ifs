@@ -1,9 +1,9 @@
 import { Fragment } from "react/jsx-runtime";
-import Button from "../../widgets/Button";
+import Button from "@widgets/Button";
 import { HiOutlinePencil } from "react-icons/hi2";
-import { useAppContext } from "../../../services/context";
+import { useAppContext } from "@services/context";
 import { ChangeEvent, useEffect, useState } from "react";
-import useAppHandler from "../../../services/handler";
+import useAppHandler from "@services/handler";
 
 const Insert = () => {
   const [value, setValue] = useState<string>("");

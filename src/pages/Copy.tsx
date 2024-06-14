@@ -1,5 +1,5 @@
-import { FadeDrop } from "../components/layout/Animations";
-import ImportButton from "../components/widgets/ImportButton";
+import { FadeDrop } from "@layout/Animations";
+import ImportButton from "@widgets/ImportButton";
 
 const Copy = () => {
   return (

@@ -1,5 +1,5 @@
 import { useDraggable } from "@dnd-kit/core";
-import { classNames } from "../../services/tools";
+import { classNames } from "@services/tools";
 
 interface Props {
   data: string;

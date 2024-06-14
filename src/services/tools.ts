@@ -1,4 +1,4 @@
-import { Export, Filters } from "../../electron/lib/methods";
+import { Export, Filters } from "@electron/lib/methods";
 
 export const classNames = (...classes: any): string => {
   return classes.filter(Boolean).join(" ");

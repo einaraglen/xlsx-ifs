@@ -1,11 +1,11 @@
 import { useDroppable } from "@dnd-kit/core";
-import { classNames } from "../../services/tools";
+import { classNames } from "@services/tools";
 import { Fragment } from "react/jsx-runtime";
 import { HiLink, HiOutlineSquare3Stack3D } from "react-icons/hi2";
-import { useAppContext } from "../../services/context";
+import { useAppContext } from "@services/context";
 import { HiOutlineXCircle } from "react-icons/hi2";
 import Toggle from "./Toggle";
-import useAppHandler from "../../services/handler";
+import useAppHandler from "@services/handler";
 
 interface Props {
   data: string;

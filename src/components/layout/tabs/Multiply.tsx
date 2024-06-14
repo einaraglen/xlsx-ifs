@@ -1,9 +1,9 @@
 import { Fragment } from "react/jsx-runtime";
-import { useAppContext } from "../../../services/context";
+import { useAppContext } from "@services/context";
 import { HiMiniVariable } from "react-icons/hi2";
-import Button from "../../widgets/Button";
+import Button from "@widgets/Button";
 import { ChangeEvent, useEffect, useState } from "react";
-import useAppHandler from "../../../services/handler";
+import useAppHandler from "@services/handler";
 
 const Multiply = () => {
   const [value, setValue] = useState<number | null>(null);

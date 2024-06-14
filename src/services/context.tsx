@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
-import { Structure, Row, Metadata, Selected, Filters, Export, Header, Filter, Multipliers, Inserts } from "../../electron/lib/methods";
+import { Structure, Row, Metadata, Selected, Filters, Export, Header, Filter, Multipliers, Inserts } from "@electron/lib/methods";
 import { getFilter } from "./tools";
 
 type AppContext = {

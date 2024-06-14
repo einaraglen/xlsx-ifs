@@ -1,11 +1,11 @@
 import { Transition } from "@headlessui/react";
 import { HiMiniXMark } from "react-icons/hi2";
-import { useAppContext } from "../../services/context";
+import { useAppContext } from "@services/context";
 import Filter from "./tabs/Filter";
 import { useState } from "react";
 import Multiply from "./tabs/Multiply";
 import Insert from "./tabs/Insert";
-import { classNames } from "../../services/tools";
+import { classNames } from "@services/tools";
 
 const Overlay = () => {
   const { overlay, setOverlay } = useAppContext();

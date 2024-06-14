@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
-import useInvoke from "../../services/invoke";
+import useInvoke from "@services/invoke";
 import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../../services/context";
+import { useAppContext } from "@services/context";
 import Button from "./Button";
 import { HiOutlineInboxArrowDown  } from "react-icons/hi2";
-import { classNames } from "../../services/tools";
-import useAppHandler from "../../services/handler";
+import { classNames } from "@services/tools";
+import useAppHandler from "@services/handler";
 
 const getFilePath = (e: React.DragEvent<HTMLDivElement>) => {
   if (e.dataTransfer.items) {

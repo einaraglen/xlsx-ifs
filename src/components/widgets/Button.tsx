@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { classNames } from "../../services/tools"
+import { classNames } from "@services/tools"
 
 interface Props {
     className?: string

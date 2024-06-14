@@ -1,8 +1,8 @@
 import { Fragment } from "react/jsx-runtime";
-import { useAppContext } from "../../../services/context";
+import { useAppContext } from "@services/context";
 import { ChangeEvent, useEffect, useState } from "react";
-import useAppHandler from "../../../services/handler";
-import Button from "../../widgets/Button";
+import useAppHandler from "@services/handler";
+import Button from "@widgets/Button";
 import { HiOutlineFunnel } from "react-icons/hi2";
 
 const Filter = () => {

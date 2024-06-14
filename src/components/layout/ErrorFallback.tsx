@@ -1,10 +1,10 @@
 import { FallbackProps } from "react-error-boundary";
 import { useNavigate } from "react-router-dom";
-import Button from "../widgets/Button";
+import Button from "@widgets/Button";
 import { HiArrowPath } from "react-icons/hi2";
 import { FadeDrop } from "./Animations";
 import { useEffect } from "react";
-import useInvoke from "../../services/invoke";
+import useInvoke from "@services/invoke";
 
 type Props = FallbackProps;
 

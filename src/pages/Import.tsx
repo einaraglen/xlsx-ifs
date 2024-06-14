@@ -1,5 +1,5 @@
-import FileDrop from "../components/widgets/FileDrop";
-import { FadeDrop } from "../components/layout/Animations";
+import FileDrop from "@widgets/FileDrop";
+import { FadeDrop } from "@layout/Animations";
 
 const Import = () => {
   return (
