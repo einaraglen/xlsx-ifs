@@ -1,5 +1,5 @@
 import { MessageBoxOptions } from "electron"
-import { ExportArguments, Structure, PrepareArguments } from "../../electron/lib/methods"
+import { ExportArguments, Structure, PrepareArguments } from "@electron/lib/methods"
 
 const useInvoke = () => {
     const readClipboard = (clipboard: string): Promise<{metadata: string[], structure: Structure[] }> => {
